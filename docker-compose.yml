@@ -6,7 +6,9 @@ volumes:
 services:
   web:
     container_name: phpServer
-    build: ./Dockerfile.dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     ports:
       - "80:80"
       - "443:443"
@@ -17,8 +19,6 @@ services:
     environment:
       - LDAP_SERVER=ldap.technikum-wien.at
       - LDAP_SEARCHBASE=dc=technikum-wien,dc=at
-      - WEBAPP_PASSWORD=1234
-      - WEBROOT=/var/www/html/src/
       - ENABLE_XDEBUG=1
       - XDEBUG_CONFIG=remote_connect_back=1
       - PHP_IDE_CONFIG=serverName=SomeName
