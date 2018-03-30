@@ -1,0 +1,35 @@
+version: "3.2"
+
+volumes:
+  mysql:
+
+services:
+  web:
+    container_name: phpServer
+    build: ./Dockerfile.dev
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - type: bind
+        source: .
+        target: /var/www/html/
+    environment:
+      - LDAP_SERVER=ldap.technikum-wien.at
+      - LDAP_SEARCHBASE=dc=technikum-wien,dc=at
+      - WEBAPP_PASSWORD=1234
+      - WEBROOT=/var/www/html/src/
+      - ENABLE_XDEBUG=1
+      - XDEBUG_CONFIG=remote_connect_back=1
+      - PHP_IDE_CONFIG=serverName=SomeName
+      - RUN_SCRIPTS=1
+
+#  db:
+#    container_name: mysqlServer
+#    image: mysql:latest
+#    ports:
+#      - "3306:3306"
+#    volumes:
+#      - mysql:/var/lib/mysql
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=root

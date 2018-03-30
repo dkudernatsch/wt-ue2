@@ -1,0 +1,17 @@
+FROM richarvey/nginx-php-fpm:latest
+
+RUN apk add --update --no-cache openldap-dev \
+    && docker-php-ext-configure ldap --with-libdir=lib/ \
+    && docker-php-ext-install ldap
+
+RUN echo "TLS_REQCERT never" >> /etc/openldap/ldap.conf
+
+
+ENV WEBROOT="/var/www/html/src/"
+ENV ENABLE_XDEBUG=1
+ENV XDEBUG_CONFIG="remote_connect_back=1"
+ENV PHP_IDE_CONFIG="serverName=SomeName"
+ENV RUN_SCRIPTS=1
+ENV PUID=0
+ENV PGID=0
+ADD ./ /var/www/html
