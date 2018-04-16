@@ -1,0 +1,4 @@
+INSERT INTO webshop.user (username, password, firstname, lastname, email, is_admin, is_ldap) VALUES ('12345678', '$2y$10$WQe9BmrLKf7yelXc2TT0Gu/cnTgtQjfNgY1DJgqcaL1ElJVHFQ53S', 'Hans', 'Hans', 'abc@google.at', 0, 0);
+INSERT INTO webshop.user (username, password, firstname, lastname, email, is_admin, is_ldap) VALUES ('h.kudernatsch', '$2y$10$q4SxpjwGUFTQlS/eLoEJAeTzOVdqG8L1P.E2mLTj7cRdjGrQhQ0pm', 'Horst', 'Herbert', 'h.herbert@gmail.com', 0, 0);
+INSERT INTO webshop.user (username, password, firstname, lastname, email, is_admin, is_ldap) VALUES ('if17b094', '$2y$10$yubKQrn2nXfMO95b6VmCre7.6VF.K5hWZb7GohAAoIcg5rFRjJ1SG', 'Daniel', 'Kudernatsch', 'if17b094@technikum-wien.at', 0, 1);
+INSERT INTO webshop.user (username, password, firstname, lastname, email, is_admin, is_ldap) VALUES ('plynore', '$2y$10$o0nNsIgNzzTzbj5s1Vhh5OYNqq/Q.djOOhm1wOjY5RtlPq/fZMeEq', 'Viktor', 'Leher', 'd.kudernatsch@outlook.com', 0, 0);
