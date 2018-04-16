@@ -13,7 +13,7 @@ class Gallery
     {
         $it = new FilesystemIterator($_SERVER['DOCUMENT_ROOT']."/img/uploads/");
         foreach($it as $file){
-            $this->images[] = $file;
+            $this->images[] = new \Image($file->getFileName());
         }
     }
 

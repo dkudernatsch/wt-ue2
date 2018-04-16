@@ -5,5 +5,8 @@
 
     <?php
         include_once "login_template.php";
+        include_once "register_template.php";
     ?>
+
+
 </header>

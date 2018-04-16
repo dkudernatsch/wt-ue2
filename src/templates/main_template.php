@@ -12,6 +12,8 @@
                 break;
             case 'cart': include 'main/shopping_cart.php';
                 break;
+            case 'user': include 'main/user_template.php';
+                break;
         }
     ?>
 </main>

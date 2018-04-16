@@ -8,10 +8,14 @@
                    $request->location[0] === '' ? "class='active'" : ""; ?>><a href="home">Home</a></li>
 
                 <li <?php echo $request->location[0] == 'products' ? "class='active'" : ""; ?>><a href="products">Products</a></li>
+                <li <?php echo $request->location[0] == 'gallery' ? "class='active'" : ""; ?>><a href="gallery">Gallery</a></li>
+
             </ul>
             <ul class="side-nav z-depth-5" id="mobile-demo">
                 <li><a href="home">Home</a></li>
                 <li><a href="products">Products</a></li>
+                <li><a href="gallery">Gallery</a></li>
+
             </ul>
 
             <!-- show login btn or logout btn -->
@@ -26,6 +30,14 @@
                     </li>
                 </ul>
             <?php } else { ?>
+                <ul class="right">
+                    <li>
+                        <a id="register-activator" class="right btn-block waves-effect halfway-fab waves-block waves-light"
+                           onclick="show('#register')">
+                            Register
+                        </a>
+                    </li>
+                </ul>
                 <ul class="right">
                     <li>
                         <a id="login-activator" class="right btn-block waves-effect halfway-fab waves-block waves-light"

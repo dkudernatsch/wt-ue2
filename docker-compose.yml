@@ -6,9 +6,7 @@ volumes:
 services:
   web:
     container_name: phpServer
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
+    build: .
     ports:
       - "80:80"
       - "443:443"
@@ -23,13 +21,17 @@ services:
       - XDEBUG_CONFIG=remote_connect_back=1
       - PHP_IDE_CONFIG=serverName=SomeName
       - RUN_SCRIPTS=1
+      - DB_HOST=db:3306
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_DATABASE=webshop
 
-#  db:
-#    container_name: mysqlServer
-#    image: mysql:latest
-#    ports:
-#      - "3306:3306"
-#    volumes:
-#      - mysql:/var/lib/mysql
-#    environment:
-#      - MYSQL_ROOT_PASSWORD=root
+  db:
+    container_name: mysqlServer
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root

@@ -17,15 +17,15 @@
                     </div>
                     <div class='row'>
                         <div class='input-field col s12'>
-                            <input name='username' type="text" id='username'/>
-                            <label for='username'>Enter your username</label>
+                            <input name='l_username' type="text" id='l_username'/>
+                            <label for='l_username'>Enter your username</label>
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class='input-field col s12'>
-                            <input class='validate' type='password' name='password' id='password'/>
-                            <label for='password'>Enter your password</label>
+                            <input class='validate' type='password' name='l_password' id='password'/>
+                            <label for='l_password'>Enter your password</label>
                         </div>
                         <label style='float: right;'>
                             <a class='pink-text text-darken-4' href=''><b>Forgot Password?</b></a>
