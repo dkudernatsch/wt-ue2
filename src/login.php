@@ -20,12 +20,12 @@ function handle_login(Request $request)
     }
 
     if (($pw = $_REQUEST['l_password']) && ($username = $_REQUEST['l_username'])) {
-        if($user = db_get_user($username, $pw)){
+        if($user = Database::GetConnection()->db_get_user($username, $pw)){
             $_SESSION['current_user'] = $user;
 
         }else if($user = ldap_get_user($username, $pw)){
             $_SESSION['current_user'] = $user;
-            db_insert_ldap_user($user, $pw);
+            Database::GetConnection()->db_insert_ldap_user($user, $pw);
         }
     }
 
@@ -38,53 +38,7 @@ function logout()
     exit();
 }
 
-function db_insert_ldap_user(User $user, $pw): bool
-{
-    if ($con = Database::GetConnection()) {
-        $admin = 0;
-        $ldap = 1;
-        if($ps = $con->prepare("INSERT INTO user VALUES (?, ?, ?, ?, ?, ?, ?)")){
-            if( $ps->bind_param("sssssii",
-                $user->getUserName(),
-                password_hash($pw, PASSWORD_DEFAULT),
-                $user->getFirstName(),
-                $user->getLastName(),
-                $user->getEmail(),
-                $user->isAdmin(),
-                $ldap)){
 
-                return $ps->execute();
-            }
-        }
-    }
-    return false;
-}
-
-function db_get_user(string $user, string $pw = ''): ?User
-{
-    if ($con = Database::GetConnection()) {
-        if ($ps = $con->prepare("SELECT username, password, firstname, lastname, email, is_admin, is_ldap FROM user WHERE username = ? AND is_ldap = false")) {
-            if ($ps->bind_param("s", $user)) {
-                if ($ps->execute()) {
-                    if ($res = $ps->get_result()) {
-                        if ($user_row = $res->fetch_assoc()) {
-                            if($pw !== '') {
-                                if (password_verify($pw, $user_row['password'])) {
-                                    return new User($user_row['username'], $user_row['firstname'], $user_row['lastname'], $user_row['email'], $user_row['is_ldap'], $user_row['is_admin']);
-                                } else {
-                                    return null;
-                                }
-                            }else{
-                                return new User($user_row['username'], $user_row['firstname'], $user_row['lastname'], $user_row['email'], $user_row['is_ldap'], $user_row['is_admin']);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    return null;
-}
 
 function ldap_get_user($user, $pw): ?User
 {

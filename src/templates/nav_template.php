@@ -9,12 +9,14 @@
 
                 <li <?php echo $request->location[0] == 'products' ? "class='active'" : ""; ?>><a href="products">Products</a></li>
                 <li <?php echo $request->location[0] == 'gallery' ? "class='active'" : ""; ?>><a href="gallery">Gallery</a></li>
+                <li><a href="news">News</a></li>
 
             </ul>
             <ul class="side-nav z-depth-5" id="mobile-demo">
                 <li><a href="home">Home</a></li>
                 <li><a href="products">Products</a></li>
                 <li><a href="gallery">Gallery</a></li>
+                <li><a href="news">News</a></li>
 
             </ul>
 

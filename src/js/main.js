@@ -104,3 +104,21 @@ async function modifyImage(imageAction) {
         }, 100);
     }
 }
+
+
+//// rss
+
+async function send_rss() {
+    let link = $('#input_rss_link').val();
+
+    let response = await fetch('/api/rss/'+ encodeURIComponent(link), {method: 'GET', credentials:"include"});
+
+    if(response.status === 200) {
+        let body = await response.text();
+        document.getElementById('rss_feed').innerHTML = body;
+    }
+    else
+        document.getElementById('rss_feed').innerHTML = '<div><h2 class="red-text">Something went wrong</h2><div>'+ await response.body +'</div></div>';
+
+    return true;
+}
